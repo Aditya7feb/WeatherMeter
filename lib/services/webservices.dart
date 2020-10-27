@@ -20,7 +20,7 @@ Future<Weather> fetchWeatherData(String cityName) async{
 
    var jsonData= jsonDecode(response.body);
 
-   print(jsonData);
+   //print(jsonData);
    return Weather.fromJson(jsonData);
 
  }else{

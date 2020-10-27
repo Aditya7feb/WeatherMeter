@@ -1,6 +1,8 @@
+import 'package:flutter/material.dart';
+
 import '../models/weather.dart';
 import '../services/webservices.dart';
-class WeatherData{
+class WeatherData with ChangeNotifier{
 
 
 Weather _currentWeather;
@@ -8,37 +10,41 @@ Weather _currentWeather;
 Future<void> getData(String cityName)async{
 
 _currentWeather = await Webservices().fetchWeatherData(cityName);
-
-
+//print(_currentWeather.description);
+ notifyListeners();
 }
 
-String get name{
-  return _currentWeather.name;
+Weather get currentWeather{
+  return _currentWeather;
 }
 
-String get condition{
-  return _currentWeather.condition;
-}
+// String get name{
+//   return _currentWeather.name;
+// }
 
-String get description{
-  return _currentWeather.description;
-}
+// String get condition{
+//   return _currentWeather.condition;
+// }
 
-String get iconUrl{
-  return _currentWeather.icon;
-}
+// String get description{
+//   return _currentWeather.description;
+// }
 
-double get temp{
-  return _currentWeather.temp;
-}
+// String get iconUrl{
+//   return _currentWeather.icon;
+// }
 
-int get humidity{
-  return _currentWeather.humidity;
-}
+// double get temp{
+//   return _currentWeather.temp;
+// }
 
-double get windspeed{
-  return _currentWeather.windSpeed;
-}
+// int get humidity{
+//   return _currentWeather.humidity;
+// }
+
+// double get windspeed{
+//   return _currentWeather.windSpeed;
+// }
 
 
 
