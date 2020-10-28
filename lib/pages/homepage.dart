@@ -46,12 +46,19 @@ class _HomePageState extends State<HomePage> {
         //   ),
         // ),  //Do not enable...without this the app looks way to sexy
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
-              width: device.width * 0.5,
-              height: device.height *0.5,
-              color: Colors.white,
+              margin: EdgeInsets.all(100),
+              width: device.width * 0.8,
+              height: device.height * 0.24,
+              decoration: new BoxDecoration(
+                color: Colors.transparent,
+                image: new DecorationImage(
+                  image: AssetImage("Assets/1cloudy.png"),
+                  fit: BoxFit.fill,
+                ),
+              ),
             ),
             Form(
               key: _formKey,
@@ -60,7 +67,7 @@ class _HomePageState extends State<HomePage> {
                 child: Container(
                   //color: Colors.white,
                   decoration: new BoxDecoration(
-                      color: Color.fromRGBO(255, 255, 255, 0.8),
+                      color: Color.fromRGBO(255, 255, 255, 0.4),
                       shape: BoxShape.rectangle,
                       borderRadius: BorderRadius.circular(10)),
                   child: TextFormField(
@@ -89,9 +96,10 @@ class _HomePageState extends State<HomePage> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       labelStyle: TextStyle(
-                        //color: Colors.black,
+                        color: Colors.black,
                         fontSize: 18,
                       ),
+
                       // icon: Icon(
                       //   Icons.search,
                       //   color: Colors.white,
@@ -108,7 +116,7 @@ class _HomePageState extends State<HomePage> {
             ),
             FlatButton(
               onPressed: onButtonPress,
-              color: Color.fromRGBO(255, 255, 255, 0.8),
+              color: Color.fromRGBO(255, 255, 255, 0.4),
               shape: new RoundedRectangleBorder(
                 borderRadius: new BorderRadius.circular(10.0),
               ),
