@@ -10,25 +10,20 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
- 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-        create: (context)=> WeatherData(),
-          child: MaterialApp(
+      create: (context) => WeatherData(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Weather Meter',
         theme: ThemeData(
-        
           primarySwatch: Colors.blue,
-          
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home:  HomePage(),
-        routes: {
-          WeatherPage.routeName : (ctx)=>WeatherPage()
-        },
+        home: HomePage(),
+        routes: {WeatherPage.routeName: (ctx) => WeatherPage()},
       ),
     );
   }
 }
-
