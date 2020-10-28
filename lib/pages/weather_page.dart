@@ -31,6 +31,7 @@ class _WeatherPageState extends State<WeatherPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children:[
               Text(weather.description),
+              Text('${weather.humidity}'),
               Image.network(weather.icon)
             ]
           )

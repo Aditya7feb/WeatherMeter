@@ -26,6 +26,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    var device = MediaQuery.of(context).size;
+
     return Container(
       decoration: new BoxDecoration(
         color: Colors.white,
@@ -46,6 +48,11 @@ class _HomePageState extends State<HomePage> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Container(
+              width: device.width * 0.5,
+              height: device.height *0.5,
+              color: Colors.white,
+            ),
             Form(
               key: _formKey,
               child: Padding(
