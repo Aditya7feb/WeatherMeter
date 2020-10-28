@@ -34,8 +34,20 @@ class _WeatherPageState extends State<WeatherPage> {
         Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
+<<<<<<< HEAD
             children: [Text(weather.description), Image.network(weather.icon)])
       ],
     ));
+=======
+            children:[
+              Text(weather.description),
+              Text('${weather.humidity}'),
+              Image.network(weather.icon)
+            ]
+          )
+        ],
+      )
+    );
+>>>>>>> 1a7dabec21419fcd61d6bb2b9a9df1a79436122a
   }
 }
