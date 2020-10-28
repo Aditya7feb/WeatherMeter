@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
                 child: Container(
                   //color: Colors.white,
                   decoration: new BoxDecoration(
-                      color: Color.fromRGBO(255, 255, 255, 0.8),
+                      color: Color.fromRGBO(255, 255, 255, 0.4),
                       shape: BoxShape.rectangle,
                       borderRadius: BorderRadius.circular(10)),
                   child: TextFormField(
@@ -82,9 +82,10 @@ class _HomePageState extends State<HomePage> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       labelStyle: TextStyle(
-                        //color: Colors.black,
+                        color: Colors.black,
                         fontSize: 18,
                       ),
+
                       // icon: Icon(
                       //   Icons.search,
                       //   color: Colors.white,
@@ -101,7 +102,7 @@ class _HomePageState extends State<HomePage> {
             ),
             FlatButton(
               onPressed: onButtonPress,
-              color: Color.fromRGBO(255, 255, 255, 0.8),
+              color: Color.fromRGBO(255, 255, 255, 0.4),
               shape: new RoundedRectangleBorder(
                 borderRadius: new BorderRadius.circular(10.0),
               ),
