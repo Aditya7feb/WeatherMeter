@@ -5,7 +5,7 @@ class Weather {
   String condition;
   String description;
   String icon;
-  double temp;
+  var temp;
   int humidity;
   double windSpeed;
 
@@ -20,7 +20,7 @@ class Weather {
   });
 
   factory Weather.fromJson(Map<String, dynamic> json) {
-    var iconData= json["weather"][0]["icon"];
+    var iconData = json["weather"][0]["icon"];
     return Weather(
       name: json["name"],
       condition: json["weather"][0]["main"],
