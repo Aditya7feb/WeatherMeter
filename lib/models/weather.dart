@@ -6,8 +6,8 @@ class Weather {
   String description;
   String icon;
   var temp;
-  int humidity;
-  double windSpeed;
+  var humidity;
+  var windSpeed;
 
   Weather({
     @required this.name,
