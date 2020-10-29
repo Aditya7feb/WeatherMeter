@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weathermeter/models/weather.dart';
@@ -10,19 +12,37 @@ class WeatherPage extends StatefulWidget {
   _WeatherPageState createState() => _WeatherPageState();
 }
 
+
+
 class _WeatherPageState extends State<WeatherPage> {
+  List<Color> colorList = [
+  Color.fromRGBO(7, 13, 89, 0.5),
+  Color.fromRGBO(255, 213, 205, 0.5),
+  Color.fromRGBO(192, 96, 161, 0.5),
+  Color.fromRGBO(1, 197, 196, 0.5),
+  Color.fromRGBO(89, 9, 149, 0.5),
+  Color.fromRGBO(245, 106, 121, 0.5),
+  Color.fromRGBO(204, 246, 200, 0.5), // litish lime green
+  Color.fromRGBO(255, 239, 160, 0.5), // canary light yellow 
+];
+
+  var kolors ;
   Weather weather;
   @override
   void initState() {
     super.initState();
     weather = Provider.of<WeatherData>(context, listen: false).currentWeather;
+    var i = Random();
+    int rndm = i.nextInt(colorList.length);
+    kolors= colorList[rndm];
+
   }
 
   // Use Weather . anything to get data from weather
   @override
   Widget build(BuildContext context) {
     var device = MediaQuery.of(context).size;
-    var kolors = Color.fromARGB(150, 30, 128, 240);
+    
     return Scaffold(
       body: Stack(
         children: [
@@ -36,14 +56,15 @@ class _WeatherPageState extends State<WeatherPage> {
           Center(
             child: Container(
               alignment: Alignment.center,
-              margin: EdgeInsets.all(40),
+              margin: EdgeInsets.all(10),
               width: device.width,
-              height: device.height / 2,
+              height: device.height,
               decoration: new BoxDecoration(
                   color: Color.fromRGBO(255, 255, 255, 0.25),
                   shape: BoxShape.rectangle,
                   borderRadius: BorderRadius.circular(30),
                   gradient: LinearGradient(
+                  
                     begin: Alignment.topLeft,
                     colors: [kolors, Colors.black45], //don't change
                     end: Alignment.bottomRight,
@@ -60,22 +81,16 @@ class _WeatherPageState extends State<WeatherPage> {
                     ),
                   ]),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  // Container(
-                  //     margin: EdgeInsets.all(50),
-                  //     width: device.width * 0.8,
-                  //     height: device.height * 0.5,
-                  //     decoration: new BoxDecoration(
-                  //         color: Color.fromRGBO(255, 255, 255, 0.25),
-                  //         shape: BoxShape.rectangle,
-                  //         borderRadius: BorderRadius.circular(20)),
-                  //     child:
+                  SizedBox(height:device.height*0.15),
                   new Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      Icon(Icons.location_on,color: Colors.white,size:40 ,),
+                      SizedBox(height:10),
                       Text(
                         '${weather.name}'.toUpperCase(),
                         style: TextStyle(
@@ -89,6 +104,7 @@ class _WeatherPageState extends State<WeatherPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
+                         
                           Image.network(
                             weather.icon,
                             color: Colors.white,
@@ -107,6 +123,7 @@ class _WeatherPageState extends State<WeatherPage> {
                           fontStyle: FontStyle.normal,
                         ),
                       ),
+                      SizedBox(height: 10),
                       Text(
                         '${weather.temp}' '°C',
                         style: TextStyle(
@@ -117,6 +134,7 @@ class _WeatherPageState extends State<WeatherPage> {
                           fontStyle: FontStyle.normal,
                         ),
                       ),
+                      SizedBox(height: 10),
                       Text(
                         'Humidity: '
                         '${weather.humidity}'
@@ -126,6 +144,7 @@ class _WeatherPageState extends State<WeatherPage> {
                           fontSize: 20,
                         ),
                       ),
+                      SizedBox(height: 5),
                       Text(
                         ''
                         'Wind: '

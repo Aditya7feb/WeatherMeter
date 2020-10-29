@@ -8,7 +8,7 @@ class WeatherData with ChangeNotifier{
 Weather _currentWeather;
 
 Future<void> getData(String cityName)async{
-
+print("Called api");
 _currentWeather = await Webservices().fetchWeatherData(cityName);
 //print(_currentWeather.description);
  notifyListeners();
