@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> {
             Container(
               margin: EdgeInsets.all(100),
               width: device.width * 0.8,
-              height: device.height * 0.24,
+              height: device.height * 0.20,
               decoration: new BoxDecoration(
                 color: Colors.transparent,
                 image: new DecorationImage(
