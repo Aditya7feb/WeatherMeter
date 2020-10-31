@@ -18,7 +18,18 @@ class _HomePageState extends State<HomePage> {
 
     if (isValid) {
       _formKey.currentState.save();
+      try{
       await Provider.of<WeatherData>(context, listen: false).getData(cityName);
+
+      }catch(error){
+        showDialog(context: context,builder: (context){
+          return AlertDialog( title: Text("City Not Found"),content: Text("The City you searched for is not found, please check the City Name and try again!"),);
+        });
+        // clears the data of the form
+        _formKey.currentState.reset();
+       
+        return;
+      }
 
       Navigator.of(context).pushNamed(WeatherPage.routeName);
     }
@@ -36,15 +47,7 @@ class _HomePageState extends State<HomePage> {
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        // appBar: AppBar(
-        //   backgroundColor: Color.fromRGBO(224, 225, 232, 1),
-        //   title: Text(
-        //     "WeatherMeter",
-        //     style: TextStyle(
-        //       color: Colors.black,
-        //     ),
-        //   ),
-        // ),  //Do not enable...without this the app looks way to sexy
+  
         body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -90,9 +93,9 @@ class _HomePageState extends State<HomePage> {
                     decoration: InputDecoration(
                       // hoverColor: Colors.white,
                       // fillColor: Colors.white,
-                      // focusColor: Colors.white,
+                       focusColor: Colors.white,
                       focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.amber),
+                        borderSide: BorderSide(color: Colors.white),
                         borderRadius: BorderRadius.circular(10),
                       ),
                       labelStyle: TextStyle(

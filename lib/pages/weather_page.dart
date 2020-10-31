@@ -12,21 +12,19 @@ class WeatherPage extends StatefulWidget {
   _WeatherPageState createState() => _WeatherPageState();
 }
 
-
-
 class _WeatherPageState extends State<WeatherPage> {
-  List<Color> colorList = [
-  Color.fromRGBO(7, 13, 89, 0.5),
-  Color.fromRGBO(255, 213, 205, 0.5),
-  Color.fromRGBO(192, 96, 161, 0.5),
-  Color.fromRGBO(1, 197, 196, 0.5),
-  Color.fromRGBO(89, 9, 149, 0.5),
-  Color.fromRGBO(245, 106, 121, 0.5),
-  Color.fromRGBO(204, 246, 200, 0.5), // litish lime green
-  Color.fromRGBO(255, 239, 160, 0.5), // canary light yellow 
-];
+  static const List<Color> colorList = [
+    Color.fromRGBO(7, 13, 89, 0.5),
+    Color.fromRGBO(255, 213, 205, 0.5),
+    Color.fromRGBO(192, 96, 161, 0.5),
+    Color.fromRGBO(1, 197, 196, 0.5),
+    Color.fromRGBO(89, 9, 149, 0.5),
+    Color.fromRGBO(245, 106, 121, 0.5),
+    Color.fromRGBO(204, 246, 200, 0.5), // litish lime green
+    Color.fromRGBO(255, 239, 160, 0.5), // canary light yellow
+  ];
 
-  var kolors ;
+  var kolors;
   Weather weather;
   @override
   void initState() {
@@ -34,22 +32,21 @@ class _WeatherPageState extends State<WeatherPage> {
     weather = Provider.of<WeatherData>(context, listen: false).currentWeather;
     var i = Random();
     int rndm = i.nextInt(colorList.length);
-    kolors= colorList[rndm];
-
+    kolors = colorList[rndm];
   }
 
   // Use Weather . anything to get data from weather
   @override
   Widget build(BuildContext context) {
-    var device = MediaQuery.of(context).size;
-    
+    final device = MediaQuery.of(context).size;
+
     return Scaffold(
       body: Stack(
         children: [
           Container(
-            decoration: new BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.white,
-              image: new DecorationImage(
+              image: const DecorationImage(
                   image: AssetImage("Assets/blur1.jpg"), fit: BoxFit.fill),
             ),
           ),
@@ -64,7 +61,6 @@ class _WeatherPageState extends State<WeatherPage> {
                   shape: BoxShape.rectangle,
                   borderRadius: BorderRadius.circular(30),
                   gradient: LinearGradient(
-                  
                     begin: Alignment.topLeft,
                     colors: [kolors, Colors.black45], //don't change
                     end: Alignment.bottomRight,
@@ -84,16 +80,29 @@ class _WeatherPageState extends State<WeatherPage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(height:device.height*0.15),
+                  SizedBox(height: device.height * 0.08),
+                  Container(
+                    child: IconButton(
+                        icon: Icon(Icons.clear),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        }),
+                    margin: EdgeInsets.only(left: device.width * 0.65),
+                  ),
+                  SizedBox(height: device.height * 0.07),
                   new Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(Icons.location_on,color: Colors.white,size:40 ,),
-                      SizedBox(height:10),
+                      const Icon(
+                        Icons.location_on,
+                        color: Colors.white,
+                        size: 40,
+                      ),
+                      const SizedBox(height: 10),
                       Text(
                         '${weather.name}'.toUpperCase(),
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 25,
                           fontWeight: FontWeight.w500,
@@ -104,7 +113,6 @@ class _WeatherPageState extends State<WeatherPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                         
                           Image.network(
                             weather.icon,
                             color: Colors.white,
@@ -155,8 +163,37 @@ class _WeatherPageState extends State<WeatherPage> {
                           fontSize: 20,
                         ),
                       ),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      Container(
+                        height: 10,
+                        width: device.width * 0.5,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.horizontal(left:Radius.circular(10),right:Radius.circular(10),),
+                          gradient: LinearGradient(
+                            colors: [Colors.redAccent, Colors.blueAccent],
+                          ),
+                        ),
+                      ),
+                      SizedBox(height:10),
+                      Container(
+                        width: device.width*0.5,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text("${weather.maxTemp} °C",style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                          ),),
+                            Text("${weather.minTemp} °C",style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,),),
+                          ],
+                        ),
+                      )
                     ],
-                  ), //),
+                  ),
                 ],
               ),
             ),

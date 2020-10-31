@@ -9,7 +9,12 @@ Weather _currentWeather;
 
 Future<void> getData(String cityName)async{
 print("Called api");
+try{
 _currentWeather = await Webservices().fetchWeatherData(cityName);
+
+}catch(error){
+  throw error;
+}
 //print(_currentWeather.description);
  notifyListeners();
 }

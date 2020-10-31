@@ -8,6 +8,8 @@ class Weather {
   var temp;
   var humidity;
   var windSpeed;
+  var maxTemp;
+  var minTemp;
 
   Weather({
     @required this.name,
@@ -17,6 +19,8 @@ class Weather {
     @required this.icon,
     @required this.temp,
     @required this.windSpeed,
+    this.maxTemp,
+    this.minTemp,
   });
 
   factory Weather.fromJson(Map<String, dynamic> json) {
@@ -29,6 +33,8 @@ class Weather {
       icon: "http://openweathermap.org/img/wn/$iconData@2x.png",
       temp: json["main"]["temp"],
       windSpeed: json["wind"]["speed"],
+      maxTemp: json["main"]["temp_max"],
+      minTemp: json["main"]["temp_min"]
     );
   }
 }
